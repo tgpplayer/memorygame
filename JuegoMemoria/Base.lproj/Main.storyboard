@@ -36,6 +36,9 @@
                                                 </fragment>
                                             </attributedString>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="RText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EOF-RS-UYE"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,6 +58,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="">
                                     <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="redPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZIj-gD-mX0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cF-zo-3eh" userLabel="Purple">
                                 <rect key="frame" x="60" y="572" width="115" height="115"/>
@@ -64,8 +70,11 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="">
-                                    <color key="baseBackgroundColor" systemColor="systemIndigoColor"/>
+                                    <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="purplePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CfF-7R-fVS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gat-av-e3Q" userLabel="Orange">
                                 <rect key="frame" x="239" y="572" width="115" height="115"/>
@@ -77,6 +86,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="">
                                     <color key="baseBackgroundColor" systemColor="systemOrangeColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="orangePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x2g-Dv-xUD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcp-qG-JS3" userLabel="Green">
                                 <rect key="frame" x="239" y="427" width="115" height="115"/>
@@ -88,6 +100,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="">
                                     <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="greenPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ca7-1i-Rv7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifW-L2-1mx" userLabel="Purple">
                                 <rect key="frame" x="60" y="717" width="115" height="115"/>
@@ -99,6 +114,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="">
                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="whitePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aI5-JL-7XF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXk-q2-NOr" userLabel="Purple">
                                 <rect key="frame" x="239" y="717" width="115" height="115"/>
@@ -110,6 +128,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="">
                                     <color key="baseBackgroundColor" systemColor="systemBlueColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="bluePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="akD-Gi-lKl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -135,7 +156,19 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="BlueB" destination="GXk-q2-NOr" id="DVF-XM-fte"/>
+                        <outlet property="GreenB" destination="gcp-qG-JS3" id="hYf-QS-H7E"/>
+                        <outlet property="OrangeB" destination="Gat-av-e3Q" id="86W-kg-xe2"/>
+                        <outlet property="PurpleB" destination="8cF-zo-3eh" id="alp-bU-zRR"/>
                         <outlet property="RItem" destination="O2h-Fr-EHy" id="E9I-R2-JYW"/>
+                        <outlet property="RedB" destination="rzA-Id-91r" id="m9a-Hd-Tkc"/>
+                        <outlet property="WhiteB" destination="ifW-L2-1mx" id="F7x-nb-va4"/>
+                        <outlet property="blueB" destination="GXk-q2-NOr" id="8fT-hb-lpx"/>
+                        <outlet property="greenB" destination="gcp-qG-JS3" id="Ag9-3G-IL7"/>
+                        <outlet property="orangeB" destination="Gat-av-e3Q" id="JT1-eK-jcJ"/>
+                        <outlet property="purpleB" destination="8cF-zo-3eh" id="hD5-PC-5xr"/>
+                        <outlet property="redB" destination="rzA-Id-91r" id="3vZ-ro-Mgr"/>
+                        <outlet property="whiteB" destination="ifW-L2-1mx" id="w8Y-5N-0E2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -150,11 +183,11 @@
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
