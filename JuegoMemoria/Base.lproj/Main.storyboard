@@ -160,6 +160,7 @@
                         <outlet property="GreenB" destination="gcp-qG-JS3" id="hYf-QS-H7E"/>
                         <outlet property="OrangeB" destination="Gat-av-e3Q" id="86W-kg-xe2"/>
                         <outlet property="PurpleB" destination="8cF-zo-3eh" id="alp-bU-zRR"/>
+                        <outlet property="RColorText" destination="3kj-XQ-fAY" id="LP5-7t-EKP"/>
                         <outlet property="RItem" destination="O2h-Fr-EHy" id="E9I-R2-JYW"/>
                         <outlet property="RedB" destination="rzA-Id-91r" id="m9a-Hd-Tkc"/>
                         <outlet property="WhiteB" destination="ifW-L2-1mx" id="F7x-nb-va4"/>

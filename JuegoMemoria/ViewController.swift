@@ -7,10 +7,9 @@ class ViewController: UIViewController {
     var loops = 0
     var pressCounter = 0
     var loopDone = false
+    var gameOver = false
     
-    let level1 = 0.8
-    let level2 = 0.6
-    let level3 = 0.4
+    var level = 0.9
     
     let colorList: [UIColor] = [UIColor.red, UIColor.green, UIColor.purple, UIColor.orange, UIColor.white, UIColor.blue]
     
@@ -24,6 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var whiteB: UIButton!
     @IBOutlet weak var blueB: UIButton!
     
+    @IBOutlet weak var RColorText: UIButton!
+    
     var Buttons: [UIButton] = []
     
     @IBOutlet weak var RItem: UIView!
@@ -36,17 +37,17 @@ class ViewController: UIViewController {
     }
 
     @IBAction func RText(_ sender: UIButton) {
-        // Fill the actual sequence with the random colors established previously
-        for _ in 1...colorList.count {
-            actualSequence.append(self.colorList[Int.random(in: 0...self.colorList.count - 1)])
-        }
-        countDown(level: level1, loops: self.loops) // loops: 3 (+1)
+        // Fill the actual sequence with the random elements from the array of colors
+        makeNewSequence()
+        RColorText.tintColor = UIColor.black
+        countDown(level: level, loops: self.loops)
         // Show colors 1 by 1 letting the user to select the correct colors before the next secuence goes on
     }
     
     func countDown(level: Double, loops: Int) {
         var colorsController = 0
         sequencePressed.removeAll()
+        print("Velocidad: " + String(level))
         // We cast the Float level to TimeInterval
         // There is a countdown which goes faster when the level of the game is higher than the last one
         // colorsController is realted to the number of colors that have appeared
@@ -54,6 +55,22 @@ class ViewController: UIViewController {
             
             self.RItem.backgroundColor = self.actualSequence[colorsController] // Paint RItem with the current element color
             // Each 0.8 secs the color is going to be the next of the array
+            
+            switch self.RItem.backgroundColor {
+            case UIColor.red:
+                self.RColorText.setTitle("RED", for: .normal)
+            case UIColor.green:
+                self.RColorText.setTitle("GREEN", for: .normal)
+            case UIColor.purple:
+                self.RColorText.setTitle("PURPLE", for: .normal)
+            case UIColor.orange:
+                self.RColorText.setTitle("ORANGE", for: .normal)
+            case UIColor.white:
+                self.RColorText.setTitle("WHITE", for: .normal)
+            case UIColor.blue:
+                self.RColorText.setTitle("BLUE", for: .normal)
+            default: break
+            }
             
             print(self.RItem.backgroundColor!)
 
@@ -117,19 +134,38 @@ class ViewController: UIViewController {
             if sequencePressed[i] != actualSequence[i] {
                 // The secuence is erroneous and it warns the user
                 print("La secuencia no es igual")
+                RItem.backgroundColor = UIColor.black
+                RColorText.setTitle("WRONG! YOU LOSE", for: .normal)
+                RColorText.tintColor =  UIColor.white
+                enableButtons(v: false)
+                gameOver = true
                 break
             }
         }
         
-        // If all the secuence is right pass to the next secuence of colors
-        print("Secuencia actual correcta")
-        if loops < 5 {
-            self.loops += 1
-            pressCounter = 0
-            countDown(level: level1, loops: self.loops)
-        } else {
-            print("Nivel 1 superado")
-            enableButtons(v: false)
+        if gameOver == false {
+            // If all the secuence is right pass to the next secuence of colors
+            print("Secuencia actual correcta")
+            if loops < 5 {
+                self.loops += 1
+                pressCounter = 0
+                countDown(level: level, loops: self.loops)
+            } else {
+                print("Nivel 1 superado")
+                enableButtons(v: false)
+                makeNewSequence()
+                loops = 0
+                pressCounter = 0
+                level -= 0.2
+                if level >= 0.4 {
+                    countDown(level: level, loops: loops)
+                } else {
+                    RItem.backgroundColor = UIColor.black
+                    RColorText.setTitle("YOU WIN", for: .normal)
+                    RColorText.tintColor =  UIColor.white
+                    enableButtons(v: false)
+                }
+            }
         }
         
     }
@@ -139,6 +175,13 @@ class ViewController: UIViewController {
             compareSequences()
         } else {
             pressCounter += 1
+        }
+    }
+    
+    func makeNewSequence() {
+        actualSequence.removeAll()
+        for _ in 1...colorList.count {
+            actualSequence.append(self.colorList[Int.random(in: 0...self.colorList.count - 1)])
         }
     }
 }
