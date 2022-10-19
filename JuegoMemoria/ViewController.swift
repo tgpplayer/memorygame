@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var blueB: UIButton!
     
     @IBOutlet weak var RColorText: UIButton!
+    @IBOutlet weak var howToPlay: UIButton!
     
     var Buttons: [UIButton] = []
     
@@ -40,22 +41,22 @@ class ViewController: UIViewController {
         // Fill the actual sequence with the random elements from the array of colors
         makeNewSequence()
         RColorText.tintColor = UIColor.black
-        countDown(level: level, loops: self.loops)
+        howToPlay.isEnabled = false
+        startSequence(level: level, loops: self.loops)
         // Show colors 1 by 1 letting the user to select the correct colors before the next secuence goes on
     }
     
-    func countDown(level: Double, loops: Int) {
+    func startSequence(level: Double, loops: Int) {
         var colorsController = 0
         sequencePressed.removeAll()
-        print("Velocidad: " + String(level))
+        print("Speed: " + String(level))
         // We cast the Float level to TimeInterval
-        // There is a countdown which goes faster when the level of the game is higher than the last one
-        // colorsController is realted to the number of colors that have appeared
+        // When the user rises up in level, the sequence is a new one and goes faster
         Timer.scheduledTimer(withTimeInterval: TimeInterval(level), repeats: true) { timer in
             
             self.RItem.backgroundColor = self.actualSequence[colorsController] // Paint RItem with the current element color
-            // Each 0.8 secs the color is going to be the next of the array
             
+            // Change the text correspondant to the actual color
             switch self.RItem.backgroundColor {
             case UIColor.red:
                 self.RColorText.setTitle("RED", for: .normal)
@@ -74,6 +75,8 @@ class ViewController: UIViewController {
             
             print(self.RItem.backgroundColor!)
 
+            // More colors are going to be shown if the user sequence is the right one, so that if it is right, then are going to appear 2 colors. Now if the 2 colors shown coincide with the next user sequence, 3 colors are going to be shown next, and so on.
+            
             if colorsController == self.loops {
                 self.loopDone = true
             } else {
@@ -133,7 +136,7 @@ class ViewController: UIViewController {
         for i in 0...self.loops {
             if sequencePressed[i] != actualSequence[i] {
                 // The secuence is erroneous and it warns the user
-                print("La secuencia no es igual")
+                print("The sequence is not the same")
                 RItem.backgroundColor = UIColor.black
                 RColorText.setTitle("WRONG! YOU LOSE", for: .normal)
                 RColorText.tintColor =  UIColor.white
@@ -145,31 +148,36 @@ class ViewController: UIViewController {
         
         if gameOver == false {
             // If all the secuence is right pass to the next secuence of colors
-            print("Secuencia actual correcta")
+            print("The actual sequence is correct")
             if loops < 5 {
                 self.loops += 1
                 pressCounter = 0
-                countDown(level: level, loops: self.loops)
+                startSequence(level: level, loops: self.loops)
             } else {
-                print("Nivel 1 superado")
+                print("Level complete")
                 enableButtons(v: false)
                 makeNewSequence()
                 loops = 0
                 pressCounter = 0
                 level -= 0.2
                 if level >= 0.4 {
-                    countDown(level: level, loops: loops)
+                    startSequence(level: level, loops: loops)
                 } else {
                     RItem.backgroundColor = UIColor.black
                     RColorText.setTitle("YOU WIN", for: .normal)
                     RColorText.tintColor =  UIColor.white
                     enableButtons(v: false)
+                    gameOver = true
                 }
             }
         }
         
+        if gameOver == true {
+            restartGame()
+        }
     }
     
+    // When the number of pulsations are the same as the number of colors shown, a comparison is done to see if the actual sequence is the same as the pressed sequence. If the number of pulsations are not the same, sum 1 to a counter until it is the same and then compare
     func finalCheck() {
         if pressCounter == loops {
             compareSequences()
@@ -179,10 +187,23 @@ class ViewController: UIViewController {
     }
     
     func makeNewSequence() {
+        // The actual sequence refers to the array of colors done randomly that the user has to press in the correct order
         actualSequence.removeAll()
         for _ in 1...colorList.count {
             actualSequence.append(self.colorList[Int.random(in: 0...self.colorList.count - 1)])
         }
+    }
+    
+    func restartGame() {
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
+            self.RColorText.setTitle("READY? PRESS HERE", for: .normal)
+            self.loops = 0
+            self.pressCounter = 0
+            self.level = 0.9
+            self.howToPlay.isEnabled = true
+            timer.invalidate()
+        }
+        self.gameOver = false
     }
 }
 
