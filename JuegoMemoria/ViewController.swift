@@ -44,6 +44,8 @@ class ViewController: UIViewController {
         howToPlay.isEnabled = false
         startSequence(level: level, loops: self.loops)
         // Show colors 1 by 1 letting the user to select the correct colors before the next secuence goes on
+        RColorText.isUserInteractionEnabled = false
+        
     }
     
     func startSequence(level: Double, loops: Int) {
@@ -201,6 +203,7 @@ class ViewController: UIViewController {
             self.pressCounter = 0
             self.level = 0.9
             self.howToPlay.isEnabled = true
+            self.RColorText.isUserInteractionEnabled = true
             timer.invalidate()
         }
         self.gameOver = false
