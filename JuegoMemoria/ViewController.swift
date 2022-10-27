@@ -5,6 +5,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var loops = 0
+    var numberOfColor = ""
     var pressCounter = 0
     var loopDone = false
     var gameOver = false
@@ -58,20 +59,22 @@ class ViewController: UIViewController {
             
             self.RItem.backgroundColor = self.actualSequence[colorsController] // Paint RItem with the current element color
             
+            self.numberOfColor = String(colorsController + 1) + ". "
+            
             // Change the text correspondant to the actual color
             switch self.RItem.backgroundColor {
             case UIColor.red:
-                self.RColorText.setTitle("RED", for: .normal)
+                self.RColorText.setTitle(self.numberOfColor + "RED", for: .normal)
             case UIColor.green:
-                self.RColorText.setTitle("GREEN", for: .normal)
+                self.RColorText.setTitle(self.numberOfColor + "GREEN", for: .normal)
             case UIColor.purple:
-                self.RColorText.setTitle("PURPLE", for: .normal)
+                self.RColorText.setTitle(self.numberOfColor + "PURPLE", for: .normal)
             case UIColor.orange:
-                self.RColorText.setTitle("ORANGE", for: .normal)
+                self.RColorText.setTitle(self.numberOfColor + "ORANGE", for: .normal)
             case UIColor.white:
-                self.RColorText.setTitle("WHITE", for: .normal)
+                self.RColorText.setTitle(self.numberOfColor + "WHITE", for: .normal)
             case UIColor.blue:
-                self.RColorText.setTitle("BLUE", for: .normal)
+                self.RColorText.setTitle(self.numberOfColor + "BLUE", for: .normal)
             default: break
             }
             
